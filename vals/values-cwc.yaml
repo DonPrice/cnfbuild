@@ -1,0 +1,36 @@
+rbac:
+  create: true
+imageCredentials:
+  name: far-secret
+cwc:
+  image:
+    repository: repo.f5.com/images
+    pullPolicy: IfNotPresent
+
+  persistence:
+    enabled: true
+orch:
+  image:
+    repository: repo.f5.com/images
+    pullPolicy: IfNotPresent
+
+fluentbit_sidecar:
+  enabled: true
+  image:
+    repository: repo.f5.com/images
+    pullPolicy: IfNotPresent
+
+
+rabbitmqNamespace: cnf-gateway
+
+cpclConfig:
+  friendlyName: "Stage 5 Lab CNF CGNAT 1.3.0"
+
+service:
+  name: f5-cnf-cwc
+
+serviceAccount:
+  create: true
+  name: sa-f5-cnf-cgnat-controller 
+
+

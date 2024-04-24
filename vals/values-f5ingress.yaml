@@ -80,9 +80,10 @@ f5-tmm:
 
     dynamicRouting:
         enabled: true
-        configMapName: zebos
+        configMapName: "zebos"
+        peerGroups: []
+        exportZebosLogs: true
         tmmRouting:
-          name: f5-tmm-routing
           image:
             repository: repo.f5.com/images
             initName: f5dr-img-init

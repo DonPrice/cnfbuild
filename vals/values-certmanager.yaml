@@ -3,7 +3,7 @@ extraArgs:
   - --v=4
 global:
   rbac:
-    create: false
+    create: true
   imagePullSecrets:
     - name: far-secret
 serviceAccount:

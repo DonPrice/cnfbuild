@@ -224,6 +224,7 @@ controller:
     repository: repo.f5.com/images
     pullPolicy: IfNotPresent
   serviceAccount:
+    create: false
     name: sa-f5-cnf-cgnat-controller
   f5_lic_helper:
     enabled: true

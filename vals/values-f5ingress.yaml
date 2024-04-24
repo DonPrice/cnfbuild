@@ -156,6 +156,9 @@ f5-stats_collector:
 
   rbac:
     create: false
+  global:
+    serviceAccount:
+      name: sa-f5-cnf-cgnat-controller
 
 global:
   serviceAccount:

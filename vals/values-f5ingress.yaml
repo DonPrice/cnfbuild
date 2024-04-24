@@ -78,20 +78,20 @@ f5-tmm:
       bfdToOVN:
        enabled: true
 
-    dynamicRouting:
-        enabled: false
-        configMapName: "zebos"
-        peerGroups: []
-        exportZebosLogs: true
-        tmmRouting:
-          image:
-            repository: repo.f5.com/images
-            initName: f5dr-img-init
-            pullPolicy: IfNotPresent
-        tmrouted:
-          image:
-            repository: repo.f5.com/images
-            pullPolicy: IfNotPresent
+    # dynamicRouting:
+    #     enabled: false
+    #     configMapName: "zebos"
+    #     peerGroups: []
+    #     exportZebosLogs: true
+    #     tmmRouting:
+    #       image:
+    #         repository: repo.f5.com/images
+    #         initName: f5dr-img-init
+    #         pullPolicy: IfNotPresent
+    #     tmrouted:
+    #       image:
+    #         repository: repo.f5.com/images
+    #         pullPolicy: IfNotPresent
 
     service:
       type: ClusterIP

@@ -30,7 +30,7 @@ service:
   name: f5-cnf-cwc
 
 serviceAccount:
-  create: true
+  create: false
   name: sa-f5-cnf-cgnat-controller 
 
 

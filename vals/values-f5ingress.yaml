@@ -148,6 +148,7 @@ f5-stats_collector:
       repository: repo.f5.com/images
       pullPolicy: IfNotPresent
     serviceAccount:
+      create: false
       name: sa-f5-cnf-cgnat-controller
 
   serviceAccount:
@@ -158,12 +159,13 @@ f5-stats_collector:
     create: false
   global:
     serviceAccount:
+      create: false
       name: sa-f5-cnf-cgnat-controller
 
 global:
   serviceAccount:
     create: false
-    name: sa-f5-cnf-cgnat-controller1
+    name: sa-f5-cnf-cgnat-controller
   afm:
     enabled: true
     pccd:

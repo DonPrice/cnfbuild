@@ -78,9 +78,9 @@ f5-tmm:
       bfdToOVN:
        enabled: true
 
-      dynamicRouting:
+    dynamicRouting:
         enabled: true
-         configMapName: zebos
+        configMapName: zebos
         tmmRouting:
           name: f5-tmm-routing
           image:

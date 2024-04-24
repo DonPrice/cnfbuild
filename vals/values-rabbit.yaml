@@ -1,0 +1,16 @@
+imageCredentials:
+  name: far-secret
+replicaCount: 1
+
+image:
+  repository: repo.f5.com/images
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+pod:
+  annotations: {}
+
+
+affinity: {}

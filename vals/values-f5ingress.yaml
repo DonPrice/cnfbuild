@@ -252,7 +252,7 @@ controller:
   watchNamespace: cnf-gateway
 
 rbac:
-  create: true
+  create: false
 
 imageCredentials:
   name: far-secret

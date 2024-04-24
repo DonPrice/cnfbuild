@@ -8,7 +8,7 @@ cwc:
     pullPolicy: IfNotPresent
 
   persistence:
-    enabled: true
+    enabled: false
 orch:
   image:
     repository: repo.f5.com/images

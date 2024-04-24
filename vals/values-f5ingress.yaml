@@ -79,7 +79,7 @@ f5-tmm:
        enabled: true
 
     dynamicRouting:
-        enabled: true
+        enabled: false
         configMapName: "zebos"
         peerGroups: []
         exportZebosLogs: true

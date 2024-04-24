@@ -163,7 +163,7 @@ f5-stats_collector:
 global:
   serviceAccount:
     create: false
-    name: sa-f5-cnf-cgnat-controller
+    name: sa-f5-cnf-cgnat-controller1
   afm:
     enabled: true
     pccd:

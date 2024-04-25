@@ -1,6 +1,8 @@
 crdconversion:
   imageCredentials:
     name: far-secret
+  nodeSelector:
+    type: control-plane
   image:
     repository: repo.f5.com/images
   rabbitmqNamespace: cnf-gateway

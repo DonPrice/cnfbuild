@@ -21,6 +21,16 @@ f5-tmm:
     persistence:
       enabled: true
       storageclassname: local-path
+
+    resources:
+      limits:
+        cpu: "1"
+        hugepages-2Mi: 2Gi
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        hugepages-2Mi: 2Gi
+        memory: 2Gi  
     customEnvVars:
       # - name: ROBIN_VFIO_RESOURCE_0
       #   value: SRIOV0_VFIOPCI
@@ -46,7 +56,7 @@ f5-tmm:
         # - name: GRPC_USE_VAULT
         #   value: 'FALSE'
       - name: TMM_MAPRES_HUGEPAGES
-        value: '1536'
+        value: '786'
         #    - name: REDIS_CA_FILE
         #      value: /etc/ssl/certs/dssm-ca.crt
         #    - name: REDIS_AUTH_CERT
@@ -78,15 +88,7 @@ f5-tmm:
       bfdToOVN:
        enabled: true
 
-    resources:
-      limits:
-        cpu: "1"
-        hugepages-2Mi: 3Gi
-        memory: 2Gi
-      requests:
-        cpu: "1"
-        hugepages-2Mi: 3Gi
-        memory: 2Gi
+    
     # dynamicRouting:
     #     enabled: false
     #     configMapName: "zebos"

@@ -14,11 +14,15 @@ image:
 webhook:
   serviceAccount:
     create: true
+  nodeSelector:
+    type: control-plane
   image:
     repository: repo.f5.com/images
 cainjector:
   serviceAccount:
     create: true
+  nodeSelector:
+    type: control-plane
   image:
     repository: repo.f5.com/images
   extraArgs:

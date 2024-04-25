@@ -34,23 +34,12 @@ f5-tmm:
         hugepages-2Mi: 2Gi
         memory: 2Gi  
     customEnvVars:
-      # - name: ROBIN_VFIO_RESOURCE_0
-      #   value: SRIOV0_VFIOPCI
-      # - name: ROBIN_VFIO_RESOURCE_1
-      #   value: SRIOV1_VFIOPCI
-      # - name: ROBIN_VFIO_RESOURCE_2
-      #   value: SRIOV2_VFIOPCI
-      # - name: ROBIN_VFIO_RESOURCE_3
-      #   value: SRIOV3_VFIOPCI
-      # Use the following environment vars
       - name: TMM_MAPRES_VERBOSITY
         value: 'debug'
       - name: TMM_MAPRES_ADDL_VETHS_ON_DP
         value: "TRUE"
-        #    - name: TMM_MAPRES_PREFER_SOCK
-        #      value: "TRUE"
       - name: TMM_MAPRES_DELAY_MS
-        value: '6000'
+        value: "10000"
       - name: TMM_CALICO_ROUTER
         value: "default"
       - name: TMM_IGNORE_GATEWAYS

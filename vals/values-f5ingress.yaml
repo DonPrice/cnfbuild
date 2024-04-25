@@ -155,6 +155,9 @@ f5-stats_collector:
 
   imageCredentials:
     name: far-secret
+  nodeSelector:
+        ## This label is used to deploy the pod on matching nodes
+    type: control-plane
 
   stats_collector:
     image:
@@ -196,6 +199,9 @@ f5-afm:
     serviceAccount:
       create: false
       name: sa-f5-cnf-cgnat-controller
+    nodeSelector:
+      ## This label is used to deploy the pod on matching nodes
+      type: control-plane
     pccd:
       enabled: true
       image:
@@ -225,6 +231,9 @@ f5-ipsd:
     image:
       repository: repo.f5.com/images
       pullPolicy: IfNotPresent
+    nodeSelector:
+      ## This label is used to deploy the pod on matching nodes
+      type: control-plane
     fluentbit_sidecar:
       debug: true
       enabled: true
@@ -238,9 +247,15 @@ controller:
   tmm_pod_manager:
     image:
       repository: repo.f5.com/images
+    nodeSelector:
+      ## This label is used to deploy the pod on matching nodes
+      type: control-plane
   image:
     repository: repo.f5.com/images
     pullPolicy: IfNotPresent
+  nodeSelector:
+       ## This label is used to deploy the pod on matching nodes
+      type: control-plane
   serviceAccount:
     create: false
     name: sa-f5-cnf-cgnat-controller

@@ -1,4 +1,5 @@
-
+nodeSelector:
+    type: control-plane
 extraArgs:
   - --v=4
 global:

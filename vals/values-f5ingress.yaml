@@ -7,7 +7,9 @@ f5-tmm:
     pod:
       annotations:
         k8s.v1.cni.cncf.io/networks: clientside,serverside
-
+    nodeSelector:
+        ## This label is used to deploy the pod on matching nodes
+        type: data-plane
     topologyManager: "true"
 
     add_k8s_routes: true

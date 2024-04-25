@@ -78,6 +78,15 @@ f5-tmm:
       bfdToOVN:
        enabled: true
 
+    resources:
+      limits:
+        cpu: "1"
+        hugepages-2Mi: 3Gi
+        memory: 2Gi
+      requests:
+        cpu: "1"
+        hugepages-2Mi: 3Gi
+        memory: 2Gi
     # dynamicRouting:
     #     enabled: false
     #     configMapName: "zebos"

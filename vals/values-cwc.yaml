@@ -2,12 +2,13 @@ rbac:
   create: true
 imageCredentials:
   name: far-secret
+nodeSelector:
+    type: control-plane
 cwc:
   image:
     repository: repo.f5.com/images
     pullPolicy: IfNotPresent
-  nodeSelector:
-    type: control-plane
+
   persistence:
     enabled: false
 orch:

@@ -30,7 +30,8 @@ cm_logs:
 image:
   repository: repo.f5.com/images
   pullPolicy: IfNotPresent
-
+nodeSelector:
+   type: control-plane
 serviceIpFamily: ipv6
 
 imageCredentials:

@@ -1,0 +1,33 @@
+apiVersion: "k8s.f5net.com/v1"
+kind: F5BigNetVlan
+metadata:
+  name: "clientside-vlan"
+  namespace: "cnf-gateway"
+spec:
+  name: clientside
+  interfaces:
+    - "1.1"
+  selfip_v6s:
+    - 2403:5808:81:20::12
+  prefixlen_v6: 64
+  allowed_services:
+    - protocol: "tcp"
+      port: "179"
+  cmp_hash: SRC_ADDR
+---
+apiVersion: "k8s.f5net.com/v1"
+kind: F5BigNetVlan
+metadata:
+  name: "serverside-vlan"
+  namespace: "cnf-gateway"
+spec:
+  name: serverside
+  interfaces:
+    - "1.2"
+  selfip_v4s:
+      - 10.1.30.12
+  prefixlen_v4: 24
+  allowed_services:
+    - protocol: "tcp"
+      port: "179"
+  cmp_hash: DST_ADDR

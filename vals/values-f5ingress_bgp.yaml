@@ -90,6 +90,13 @@ f5-tmm:
             repository: repo.f5.com/images
             initName: f5dr-img-init
             pullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 300m
+              memory: 512Mi
+            requests:
+              cpu: 150m
+              memory: 512Mi
           config:
             bgp:
               asn: 65002
@@ -97,6 +104,13 @@ f5-tmm:
           image:
             repository: repo.f5.com/images
             pullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 300m
+              memory: 512Mi
+            requests:
+              cpu: 150m
+              memory: 512Mi
 
     service:
       type: ClusterIP

@@ -172,7 +172,7 @@ f5-tmm:
           cpu: 250m
           memory: 1Gi
         requests:
-          cpu: 250mm
+          cpu: 250m
           memory: 1Gi
 
 f5-stats_collector:

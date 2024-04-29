@@ -155,10 +155,10 @@ f5-tmm:
           pullPolicy: IfNotPresent
       resources:
           limits:
-            cpu: 500m
+            cpu: 250m
             memory: 1Gi
           requests:
-            cpu: 500m
+            cpu: 250m
             memory: 1Gi
     fluentd:
       host: f5-toda-fluentd.cnf-gateway.svc.cluster.local
@@ -167,6 +167,13 @@ f5-tmm:
       image:
         repository: repo.f5.com/images
         pullPolicy: IfNotPresent
+      resources:
+        limits:
+          cpu: 250m
+          memory: 1Gi
+        requests:
+          cpu: 250mm
+          memory: 1Gi
 
 f5-stats_collector:
   enabled: true

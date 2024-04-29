@@ -107,6 +107,13 @@ f5-tmm:
     image:
       repository: repo.f5.com/images
       pullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 500m
+        memory: 1Gi
     enabled: true
     name: f5-blobd
 
@@ -115,6 +122,13 @@ f5-tmm:
     image:
       repository: repo.f5.com/images
       pullPolicy: IfNotPresent
+    resources:
+      limits:
+        cpu: 500m
+        memory: 1Gi
+      requests:
+        cpu: 500m
+        memory: 1Gi
     rabbitmqNamespace: cnf-gateway
       
   f5-toda-logging:
@@ -125,6 +139,13 @@ f5-tmm:
         image:
           repository: repo.f5.com/images
           pullPolicy: IfNotPresent
+      resources:
+          limits:
+            cpu: 700m
+            memory: 1Gi
+          requests:
+            cpu: 700m
+            memory: 1Gi
     fluentd:
       host: f5-toda-fluentd.cnf-gateway.svc.cluster.local
     sidecar:
@@ -199,7 +220,10 @@ f5-afm:
       image:
         repository: repo.f5.com/images
         pullPolicy: IfNotPresent
-
+      resources:
+        requests:
+          cpu: 200m
+          memory: 512Mi
 
     fluentbit_sidecar:
       debug: true
@@ -239,6 +263,13 @@ controller:
   tmm_pod_manager:
     image:
       repository: repo.f5.com/images
+    resources:
+      limits:
+        cpu: 500m
+        memory: 512Mi
+      requests:
+        cpu: 500m
+        memory: 512Mi
     nodeSelector:
       ## This label is used to deploy the pod on matching nodes
       type: control-plane
@@ -265,7 +296,13 @@ controller:
     image:
       repository: repo.f5.com/images
       pullPolicy: IfNotPresent
-
+    resources:
+      # limits: {}
+      #   cpu: 200m
+      #   memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
     fluentd:
       host: f5-toda-fluentd.cnf-gateway.svc.cluster.local
 

@@ -8,7 +8,8 @@ spec:
   interfaces:
     - "1.1"
   selfip_v6s:
-    - 2403:5808:81:20::12
+    - 2403:5808:81:20::7
+    - 2403:5808:81:20::8
   prefixlen_v6: 64
   allowed_services:
     - protocol: "tcp"
@@ -25,7 +26,8 @@ spec:
   interfaces:
     - "1.2"
   selfip_v4s:
-      - 10.1.30.12
+      - 10.1.30.7
+      - 10.1.30.8
   prefixlen_v4: 24
   allowed_services:
     - protocol: "tcp"

@@ -81,7 +81,7 @@ f5-tmm:
 
     
     dynamicRouting:
-        enabled: false
+        enabled: true
         configMapName: "cnf-bgp"
         peerGroups: []
         exportZebosLogs: true

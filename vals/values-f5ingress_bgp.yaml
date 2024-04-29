@@ -30,7 +30,7 @@ f5-tmm:
         hugepages-2Mi: 2Gi
         memory: 2Gi
       requests:
-        cpu: "500m"
+        cpu: "250m"
         hugepages-2Mi: 2Gi
         memory: 2Gi  
     customEnvVars:

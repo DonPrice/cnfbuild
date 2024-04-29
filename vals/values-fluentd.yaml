@@ -32,7 +32,7 @@ image:
   pullPolicy: IfNotPresent
 nodeSelector:
    type: control-plane
-serviceIpFamily: ipv4
+#serviceIpFamily: ipv4
 
 imageCredentials:
   name: far-secret

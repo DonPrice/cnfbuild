@@ -90,6 +90,9 @@ f5-tmm:
             repository: repo.f5.com/images
             initName: f5dr-img-init
             pullPolicy: IfNotPresent
+          config:
+            bgp:
+              asn: 65002
         tmrouted:
           image:
             repository: repo.f5.com/images

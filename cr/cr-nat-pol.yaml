@@ -6,6 +6,7 @@ metadata:
 spec:
   sourceTranslation:
     - name: st-v6v4
+      routeAdvertisement: true
       addresses:
         - "10.1.40.0/24"
       excludeAddresses:

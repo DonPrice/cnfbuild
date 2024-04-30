@@ -43,7 +43,7 @@ f5-tmm:
       - name: TMM_CALICO_ROUTER
         value: "default"
       - name: TMM_IGNORE_GATEWAYS
-        value: 'true'
+        value: 'false'
         # - name: GRPC_USE_VAULT
         #   value: 'FALSE'
       - name: TMM_MAPRES_HUGEPAGES

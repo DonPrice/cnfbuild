@@ -1,0 +1,22 @@
+---
+apiVersion: "k8s.f5net.com/v1"
+kind: F5BigFwPolicy
+metadata:
+  name: "cnf-fw-64"
+  namespace: "cnf-gateway"
+spec:
+  rule:
+   - name: allow-64
+     action: "accept"
+     logging: true
+     ipProtocol: any
+     source:
+       addresses:
+         - "2403:5808:81:10::0/64"
+   - name: drop-all
+     action: "drop"
+     logging: true
+     ipProtocol: any
+     source:
+       addresses:
+         - "::/0"

@@ -1,0 +1,19 @@
+---
+apiVersion: k8s.f5net.com/v1
+kind: F5BigNatPolicy
+metadata:
+  name: natpol-64
+spec:
+  sourceTranslation:
+    - name: st-v6v4
+      addresses:
+        - "10.1.40.15-254"
+      clientConnectionLimit: 2000
+      mapping:
+        mode: endpoint-independent-mapping
+      port: 1025-65535
+      type: dynamic-pat
+  rule:
+    - name: rl-nat-any
+      ipProtocol: any
+      sourceTranslation: st-v6v4

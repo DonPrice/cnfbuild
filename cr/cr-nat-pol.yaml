@@ -8,7 +8,7 @@ spec:
     - name: st-v6v4
       addresses:
         - "10.1.40.0/24"
-      excludedAddresses:
+      excludeAddresses:
         - "10.1.40.1-10.1.40.20"
       clientConnectionLimit: 2000
       mapping:

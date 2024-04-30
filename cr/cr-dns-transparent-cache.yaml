@@ -24,6 +24,7 @@ spec:
   dns:
     dnsCache: dnsc-transparent
     dns64Mode:  secondary
+    dns64Prefix:  2403:5808:81:60::0/96
   vlans:
     disableListedVlans: false
     vlanList:

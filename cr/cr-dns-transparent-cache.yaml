@@ -19,11 +19,11 @@ spec:
     port: 53
     ipv6Address: 2403:5808:81:50::20
   snat:
-    type: snat
-    pool: snatpl-ciot-stg-46dns
-  ipProtocol: tcp
+    type: automap
+  ipProtocol: udp
   dns:
     dnsCache: dnsc-transparent
+    dns64Mode:  secondary
   vlans:
     disableListedVlans: false
     vlanList:

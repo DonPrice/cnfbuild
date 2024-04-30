@@ -28,7 +28,7 @@ spec:
   prefixLen: 16
   type: gateway
   gateway: 169.254.1.1
-  interface: eth0
+  #interface: eth0
 ---
 apiVersion: k8s.f5net.com/v1
 kind: F5BigNetStaticroute
@@ -39,4 +39,4 @@ spec:
   prefixLen: 16
   type: gateway
   gateway: 169.254.1.1
-  interface: eth0
+  #interface: eth0

@@ -11,7 +11,7 @@ spec:
       addresses:
         - "10.1.50.0/24"
       excludeAddresses:
-        - "10.1.50.1-10.1.50.20"
+        - "10.1.50.0-10.1.50.20"
       clientConnectionLimit: 2000
       mapping:
         mode: endpoint-independent-mapping

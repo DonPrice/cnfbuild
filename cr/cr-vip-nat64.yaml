@@ -10,7 +10,7 @@ spec:
   ipProtocol: any
   #fastL4Settings:
     #profileName: pf-ciot-stg-fastl4-01   
-  #firewallEnforcedPolicy: fwpol-ciot-stg-02
+  firewallEnforcedPolicy: cnf-fw-64
   #logProfile: lp-ciot-stg
   natPolicy: natpol-64
   profile: fastL4

@@ -25,5 +25,5 @@ spec:
           - "2403:5808:81:10::0/64"
       destination:
         addresses:
-         - "2403:5808:81:60::0/96"
+         - "64:ff9b::0/96"
       sourceTranslation: st-v6v4

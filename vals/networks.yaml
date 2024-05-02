@@ -1,0 +1,28 @@
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: clientside
+  namespace: cnf-gateway
+spec:
+  config: '{
+    "cniVersion": "0.3.0",
+    "type": "macvlan",
+    "master": "ens6",
+    "mode": "bridge",
+    "ipam": {}
+    }'
+---
+apiVersion: "k8s.cni.cncf.io/v1"
+kind: NetworkAttachmentDefinition
+metadata:
+  name: serverside
+  namespace: cnf-gateway
+spec:
+  config: '{
+    "cniVersion": "0.3.0",
+    "type": "macvlan",
+    "master": "ens7",
+    "mode": "bridge",
+    "ipam": {}
+    }'

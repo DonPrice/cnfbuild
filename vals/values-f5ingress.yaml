@@ -77,8 +77,8 @@ f5-tmm:
       vfio:
         enabled: true
 
-      bfdToOVN:
-        enabled: true
+    bfdToOVN:
+      enabled: true
 
     dynamicRouting:
         enabled: true

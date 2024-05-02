@@ -49,7 +49,7 @@ serviceAccount:
 tolerations:
   - key: "type"
     operator: "Equal"
-    value: "control-plane"
+    value: "data-plane"
     effect: "NoSchedule"
 
 imagePullSecrets:

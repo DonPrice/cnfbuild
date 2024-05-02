@@ -44,13 +44,14 @@ serviceAccount:
   create: true
   name: sa-f5-cnf-cgnat-controller
 
-# nodeSelector:
-#    type: control-plane
-tolerations:
-  - key: "type"
-    operator: "Equal"
-    value: "data-plane"
-    effect: "NoSchedule"
+nodeSelector:
+   type: control-plane
+
+# tolerations:
+#   - key: "type"
+#     operator: "Equal"
+#     value: "data-plane"
+#     effect: "NoSchedule"
 
 imagePullSecrets:
  - name: far-secret

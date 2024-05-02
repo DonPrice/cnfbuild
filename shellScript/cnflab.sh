@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+sudo apt install net-tools
+
 NET_FILE="55-cnf.yaml"
 if [[ ! -e "$NET_FILE" ]]
     then

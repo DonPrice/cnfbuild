@@ -39,7 +39,7 @@ f5-tmm:
       - name: TMM_MAPRES_ADDL_VETHS_ON_DP
         value: "TRUE"
       - name: TMM_MAPRES_DELAY_MS
-        value: "10000"
+        value: "20000"
       - name: TMM_CALICO_ROUTER
         value: "default"
       - name: TMM_IGNORE_GATEWAYS
@@ -146,7 +146,7 @@ f5-tmm:
     rabbitmqNamespace: cnf-gateway
       
   f5-toda-logging:
-    enabled: true
+    enabled: false
     tmstats:
       enabled: true
       config:
@@ -204,6 +204,7 @@ f5-stats_collector:
   serviceAccount:
     create: false
     name: sa-f5-cnf-cgnat-controller-ingress
+  
 
 global:
   serviceAccount:

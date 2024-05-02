@@ -19,7 +19,7 @@ f5-tmm:
       pullPolicy: IfNotPresent
     serviceAccount:
       create: false
-      name: sa-f5-cnf-cgnat-controller
+      name: sa-f5-cnf-cgnat-controller-ingress-ingress
     persistence:
       enabled: true
       storageclassname: local-path
@@ -199,16 +199,16 @@ f5-stats_collector:
       pullPolicy: IfNotPresent
     serviceAccount:
       create: false
-      name: sa-f5-cnf-cgnat-controller
+      name: sa-f5-cnf-cgnat-controller-ingress
 
   serviceAccount:
     create: false
-    name: sa-f5-cnf-cgnat-controller
+    name: sa-f5-cnf-cgnat-controller-ingress
 
 global:
   serviceAccount:
     create: false
-    name: sa-f5-cnf-cgnat-controller
+    name: sa-f5-cnf-cgnat-controller-ingress
   afm:
     enabled: true
     pccd:
@@ -223,7 +223,7 @@ f5-afm:
   afm:
     serviceAccount:
       create: false
-      name: sa-f5-cnf-cgnat-controller
+      name: sa-f5-cnf-cgnat-controller-ingress
     nodeSelector:
       ## This label is used to deploy the pod on matching nodes
       type: control-plane
@@ -293,7 +293,7 @@ controller:
       type: control-plane
   serviceAccount:
     create: false
-    name: sa-f5-cnf-cgnat-controller
+    name: sa-f5-cnf-cgnat-controller-ingress
   f5_lic_helper:
     enabled: true
     rabbitmqNamespace: cnf-gateway
@@ -324,7 +324,7 @@ rbac:
   create: true
 
 serviceAccount:
-  name: sa-f5-cnf-cgnat-controller
+  name: sa-f5-cnf-cgnat-controller-ingress
 
 imageCredentials:
   name: far-secret

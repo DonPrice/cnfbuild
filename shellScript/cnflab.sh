@@ -1,5 +1,8 @@
 #!/usr/bin/bash
 
+NET_FILE="55-cnf.yaml"
+if [[ ! -e "$NET_FILE" ]]
+    then
 # Enable Interfaces on Worker Nodes This is to work around UDF, we do not have an IP associated with these interfaces so they are left shut.
 cat <<EOF > 55-cnf.yaml 
 network:
@@ -15,12 +18,14 @@ EOF
 
 USERNAME=ubuntu
 HOSTS="10.1.1.6 10.1.1.7 10.1.1.8 10.1.1.12"
-SCRIPT="sudo cp /home/ubuntu/55-cnf.yaml /etc/netplan/"
+SCRIPT="sudo chmod 700 /home/ubuntu/55-cnf.yaml; sudo cp /home/ubuntu/55-cnf.yaml /etc/netplan/ sudo netplan apply"
 for HOSTNAME in ${HOSTS} ; do
     scp 55-cnf.yaml ${USERNAME}@${HOSTNAME}:/home/ubuntu/
     ssh -l ${USERNAME} ${HOSTNAME} "${SCRIPT}"
 done
 
+        # do work here because file $f does not exist
+    fi
 # Remove the Default IPv4 Route Client Traffic must route via IPv6 Interface.
 sudo route del -net 0.0.0.0 gw 10.1.1.1 netmask 0.0.0.0 dev ens5
 

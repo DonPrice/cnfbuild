@@ -1,10 +1,23 @@
 #!/usr/bin/bash
 
 # Enable Interfaces on Worker Nodes This is to work around UDF, we do not have an IP associated with these interfaces so they are left shut.
+cat <<EOF > 55-cnf.yaml 
+network:
+        version: 2
+        ethernets:
+          ens6:
+            dhcp4: no
+            dhcp6: no
+          ens7:
+            dhcp4: no
+            dhcp6: no
+EOF
+
 USERNAME=ubuntu
 HOSTS="10.1.1.6 10.1.1.7 10.1.1.8 10.1.1.12"
-SCRIPT="sudo ip link set dev ens6 up; sudo ip link set dev ens7 up"
+SCRIPT="sudo cp /home/ubuntu/55-cnf.yaml /etc/netplan/"
 for HOSTNAME in ${HOSTS} ; do
+    scp 55-cnf.yaml ${USERNAME}@${HOSTNAME}:/home/ubuntu/
     ssh -l ${USERNAME} ${HOSTNAME} "${SCRIPT}"
 done
 

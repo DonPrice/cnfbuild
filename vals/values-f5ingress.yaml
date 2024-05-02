@@ -76,10 +76,10 @@ f5-tmm:
     network:
       vfio:
         enabled: true
-      bfdToOVN:
-       enabled: true
 
-    
+    bfdToOVN:
+      enabled: true
+
     dynamicRouting:
         enabled: true
         configMapName: "cnf-bgp"
@@ -205,13 +205,6 @@ f5-stats_collector:
     create: false
     name: sa-f5-cnf-cgnat-controller
 
-  rbac:
-    create: false
-  global:
-    serviceAccount:
-      create: false
-      name: sa-f5-cnf-cgnat-controller
-
 global:
   serviceAccount:
     create: false
@@ -228,8 +221,6 @@ global:
 f5-afm:
   enabled: true
   afm:
-    rbac:
-      create: true
     serviceAccount:
       create: false
       name: sa-f5-cnf-cgnat-controller
@@ -330,7 +321,10 @@ controller:
   watchNamespace: cnf-gateway
 
 rbac:
-  create: false
+  create: true
+
+serviceAccount:
+  name: sa-f5-cnf-cgnat-controller
 
 imageCredentials:
   name: far-secret

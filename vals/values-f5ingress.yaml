@@ -19,7 +19,7 @@ f5-tmm:
       pullPolicy: IfNotPresent
     serviceAccount:
       create: false
-      name: sa-f5-cnf-cgnat-controller-ingress-ingress
+      name: sa-f5-cnf-cgnat-controller-ingress
     persistence:
       enabled: true
       storageclassname: local-path

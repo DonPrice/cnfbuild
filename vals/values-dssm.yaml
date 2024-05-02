@@ -2,8 +2,8 @@ replicaCount: 2
 image:
   repository: repo.f5.com/images
   pullPolicy: IfNotPresent
-nodeSelector:
-   type: control-plane
+# nodeSelector:
+#    type: control-plane
       
 cert_client_sidecar:
   name: f5-cert-client

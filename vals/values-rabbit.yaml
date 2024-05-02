@@ -2,8 +2,7 @@ imageCredentials:
   name: far-secret
 replicaCount: 1
 nodeSelector:
-  ## This label is used to deploy the pod on matching nodes
-  type: control-plane
+   type: control-plane
 image:
   repository: repo.f5.com/images
   pullPolicy: IfNotPresent

@@ -13,9 +13,9 @@ f5-tmm:
     topologyManager: "true"
 
     add_k8s_routes: true
-    
+
     hugepages:
-      enabled: true
+      enabled: false
 
 
     image:

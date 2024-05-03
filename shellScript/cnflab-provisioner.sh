@@ -17,7 +17,7 @@ sed -i 's/https:\/\/127.0.0.1:6443/https:\/\/10.1.1.6:6443/g' ~/.kube/config
 # Setup Kubectl AutoCompletion
 kubectl completion bash > ~/.bash_kube_completion
 
-echo "# Kubectl shortcuts"
+# Kubectl shortcuts
 echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc
 
 echo "alias k='kubectl'" >> ~/.bashrc

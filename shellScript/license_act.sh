@@ -4,8 +4,8 @@ set -e
 #set -x
 
 lbip=${lbip:="10.1.1.8:30881"}
-CERT_GEN_PATH="/home/ubuntu/api-server-secrets/ssl"
-CWCPATH="home/ubuntu/api-keys/"
+CERT_GEN_PATH="/home/ubuntu/cnfbuild/api-server-secrets/ssl"
+CWCPATH="/home/ubuntu/api-keys/"
 DIGITAL_ASSET_ID=""
 LICENSE_STATUS=""
 LICENSE_REPORT=""

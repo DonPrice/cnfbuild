@@ -17,7 +17,7 @@ sed -i 's/https:\/\/127.0.0.1:6443/https:\/\/10.1.1.6:6443/g' ~/.kube/config
 # Setup Kubectl AutoCompletion
 kubectl completion bash > ~/.bash_kube_completion
 
-# Kubectl shortcuts
+# Adding Kubectl shortcuts
 echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc
 
 echo "alias k='kubectl'" >> ~/.bashrc
@@ -34,3 +34,6 @@ echo "alias kdrs='kubectl describe rs '" >> ~/.bashrc
 echo "alias kgd='kubectl get deploy '" >> ~/.bashrc
 
 echo 'source ~/.bash_kube_completion'  >> ~/.bashrc
+
+echo '===== Changing Default Namespace for current context to cnf-gateway ====='
+kubectl config set-context --current --namespace cnf-gateway

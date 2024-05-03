@@ -15,7 +15,7 @@ cp ~/build/k3sKubeConfig/10.1.1.6/etc/rancher/k3s/k3s.yaml ~/.kube/config
 sed -i 's/https:\/\/127.0.0.1:6443/https:\/\/10.1.1.6:6443/g' ~/.kube/config
 
 # Setup Kubectl AutoCompletion
-kubectl completion bash | sudo tee /etc/bash_completion.d/kubectl > /dev/null
+kubectl completion bash > ~/.bash_kube_completion
 
 # Kubectl shortcuts
 echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc
@@ -32,3 +32,5 @@ echo 'alias kgettmm=kubectl get pods -owide  | grep tmm | sort -k8' >> ~/.bashrc
 echo 'alias kgrs=kubectl get rs ' >> ~/.bashrc
 echo 'alias kdrs=kubectl describe rs ' >> ~/.bashrc
 echo 'alias kgd=kubectl get deploy ' >> ~/.bashrc
+
+echo 'source ~/.bash_kube_completion'  >> ~/.bashrc

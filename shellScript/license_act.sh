@@ -1,5 +1,5 @@
 #!/bin/sh
-# ensure we exit for any error
+# ensure we exit for any error To force push
 set -e
 #set -x
 

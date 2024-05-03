@@ -34,3 +34,6 @@ echo "alias kdrs='kubectl describe rs '" >> ~/.bashrc
 echo "alias kgd='kubectl get deploy '" >> ~/.bashrc
 
 echo 'source ~/.bash_kube_completion'  >> ~/.bashrc
+
+echo '===== Changing Default Namespace for current context to cnf-gateway ====='
+kubectl config set-context --current --namespace cnf-gateway

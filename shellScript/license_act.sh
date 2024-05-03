@@ -24,6 +24,8 @@ copy_api_keys () {
   fi
 }
 
+copy_api_keys
+
 get_license_status() {
     if ! [ -z ${DIGITAL_ASSET_ID} ]; then
         return

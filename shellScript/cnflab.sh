@@ -18,7 +18,7 @@ EOF
 
 USERNAME=ubuntu
 HOSTS="10.1.1.6 10.1.1.7 10.1.1.8 10.1.1.12"
-SCRIPT="sudo chmod 700 /home/ubuntu/55-cnf.yaml; sudo cp /home/ubuntu/55-cnf.yaml /etc/netplan/; sudo netplan apply; sudo sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="systemd.unified_cgroup_hierarchy=0"/g' /etc/default/grub ; sudo update-grub; sudo reboot now"
+SCRIPT="sudo chmod 700 /home/ubuntu/55-cnf.yaml; sudo cp /home/ubuntu/55-cnf.yaml /etc/netplan/; sudo netplan apply; sudo sed -i 's/GRUB_CMDLINE_LINUX=\"\"/GRUB_CMDLINE_LINUX=\"systemd.unified_cgroup_hierarchy=0\"/g' /etc/default/grub ; sudo update-grub; sudo reboot now"
 for HOSTNAME in ${HOSTS} ; do
     scp 55-cnf.yaml ${USERNAME}@${HOSTNAME}:/home/ubuntu/
     ssh -l ${USERNAME} ${HOSTNAME} "${SCRIPT}"

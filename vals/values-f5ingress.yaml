@@ -13,6 +13,10 @@ f5-tmm:
     topologyManager: "true"
 
     add_k8s_routes: true
+    
+    hugepages:
+      enabled: true
+
 
     image:
       repository: repo.f5.com/images

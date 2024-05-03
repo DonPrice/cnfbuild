@@ -28,11 +28,11 @@ f5-tmm:
       limits:
         cpu: "1"
         hugepages-2Mi: 2Gi
-        memory: 2Gi
+        memory: 4Gi
       requests:
         cpu: "250m"
         hugepages-2Mi: 2Gi
-        memory: 2Gi  
+        memory: 4Gi  
     customEnvVars:
       - name: TMM_MAPRES_VERBOSITY
         value: 'debug'

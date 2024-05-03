@@ -38,8 +38,8 @@ f5-tmm:
         value: 'debug'
       - name: TMM_MAPRES_ADDL_VETHS_ON_DP
         value: "TRUE"
-      - name: TMM_MAPRES_DELAY_MS
-        value: "20000"
+      # - name: TMM_MAPRES_DELAY_MS
+      #   value: "20000"
       - name: TMM_CALICO_ROUTER
         value: "default"
       - name: TMM_IGNORE_GATEWAYS
@@ -146,7 +146,7 @@ f5-tmm:
     rabbitmqNamespace: cnf-gateway
       
   f5-toda-logging:
-    enabled: false
+    enabled: true
     tmstats:
       enabled: true
       config:

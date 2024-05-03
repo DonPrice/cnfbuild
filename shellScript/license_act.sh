@@ -11,7 +11,7 @@ LICENSE_STATUS=""
 LICENSE_REPORT=""
 LICENSE_JWT=""
 
-JWT_FILE=${JWT_FILE:=~/vals/jwt.txt}
+JWT_FILE=${JWT_FILE:=~/cnfbuild/vals/jwt.txt}
 echo $JWT_FILE
 
 copy_api_keys () {

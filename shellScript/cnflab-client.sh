@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 
-sudo apt install net-tools
+sudo apt install net-tools firefox
 
 NET_FILE="55-cnf.yaml"
 if [[ ! -e "$NET_FILE" ]]

@@ -31,7 +31,7 @@ spec:
         - '--storage.tsdb.retention=6h'
         - '--storage.tsdb.path=/prometheus'
         - '--config.file=/etc/prometheus/prometheus.yaml'
-        image: artifactory.f5net.com/f5-toda-docker/sraja:v0.1.0-932c2dbe7d3e.debug
+        image: prom/prometheus
         imagePullPolicy: Always
         name: prometheus
         ports:

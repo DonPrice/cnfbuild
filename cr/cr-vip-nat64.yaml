@@ -18,23 +18,3 @@ spec:
     disableListedVlans: false
     vlanList:
       - "clientside-vlan"
----
-apiVersion: k8s.f5net.com/v1
-kind: F5BigContextSecure
-metadata:
-  name: vs-native-any-01
-spec:
-  #description: "v6 to v4 Generic VS"
-  ipv6destinationAddress: "::/0"
-  destinationPort: 0
-  ipProtocol: any
-  #fastL4Settings:
-    #profileName: pf-ciot-stg-fastl4-01   
-  firewallEnforcedPolicy: cnf-fw-64
-  #logProfile: lp-ciot-stg
-  natPolicy: natpol-64
-  profile: fastL4
-  vlans:
-    disableListedVlans: false
-    vlanList:
-      - "clientside-vlan"

@@ -1,6 +1,14 @@
 #!/usr/bin/bash
 
-sudo apt install net-tools firefox
+APT_PACKAGES="net-tools bash-completion"
+for package in ${APT_PACKAGES} ; do
+    sudo apt install ${package}
+done
+
+SNAP_PACKAGES="brave"
+for snaps in ${SNAP_PACKAGES} ; do
+    sudo snap install ${snaps} --classic
+done
 
 NET_FILE="55-cnf.yaml"
 if [[ ! -e "$NET_FILE" ]]

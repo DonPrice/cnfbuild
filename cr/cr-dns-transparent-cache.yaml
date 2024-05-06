@@ -23,7 +23,7 @@ spec:
   ipProtocol: udp
   dns:
     dnsCache: dnsc-transparent
-    dns64Mode:  secondary
+    dns64Mode:  immediate
     dns64Prefix:  "64:ff9b::"
     dns64AdditionalSectionRewrite: "v4-only"
   vlans:

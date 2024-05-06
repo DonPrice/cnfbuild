@@ -26,5 +26,4 @@ spec:
       destination:
         addresses:
          - "64:ff9b::0/96"
-         - "::/0"
       sourceTranslation: st-v6v4

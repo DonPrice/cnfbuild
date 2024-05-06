@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-config
-  namespace: cnf-performance
+  namespace: cnf-gateway
 data:
   prometheus.yaml: |
     global:
@@ -15,7 +15,7 @@ data:
         - role: pod
           namespaces:
             names:
-            - <namespace>
+            - cnf-gateway
         relabel_configs:
           - source_labels: [__meta_kubernetes_pod_label_metrics_prometheus, __meta_kubernetes_pod_container_port_number]
             regex: publish;9090

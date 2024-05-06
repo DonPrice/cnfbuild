@@ -6,7 +6,7 @@ metadata:
   managedFields:
   - apiVersion: apps/v1
   name: prometheus
-  namespace: cnf-performance
+  namespace: cnf-gateway
 spec:
   replicas: 1
   selector:
@@ -63,7 +63,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-config
-  namespace: cnf-performance
+  namespace: cnf-gateway
 data:
   prometheus.yaml: |
     global:
@@ -76,7 +76,7 @@ data:
         - role: pod
           namespaces:
             names:
-            - NAMESPACE
+            - cnf-gateway
         relabel_configs:
           - source_labels: [__meta_kubernetes_pod_label_metrics_prometheus, __meta_kubernetes_pod_container_port_number]
             regex: publish;9090
@@ -98,7 +98,7 @@ apiVersion: v1
 kind: Service
 metadata:
     name: prometheus-web
-    namespace: cnf-performance
+    namespace: cnf-gateway
 spec:
     selector:
         app: prometheus
@@ -112,7 +112,7 @@ spec:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: prometheus-cnf-performance
+  name: prometheus-cnf-gateway
 rules:
 - apiGroups: [""]
   resources:
@@ -137,21 +137,21 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: prometheus-cnf-performance
+  name: prometheus-cnf-gateway
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: prometheus-cnf-performance
+  name: prometheus-cnf-gateway
 subjects:
 - kind: ServiceAccount
   name: default
-  namespace: cnf-performance
+  namespace: cnf-gateway
 ---
 apiVersion: cm.f5co.k8s.f5net.com/v1
 kind: Certificate
 metadata:
   name: prometheus
-  namespace: cnf-performance
+  namespace: cnf-gateway
 spec:
   subject:
     countries:

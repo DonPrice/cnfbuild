@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: grafana
-  namespace: cnf-performance
+  namespace: cnf-gateway
 spec:
   replicas: 1
   selector:
@@ -45,7 +45,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: grafana-datasources
-  namespace: cnf-performance
+  namespace: cnf-gateway
 data:
   prometheus.yaml: |-
     {
@@ -57,7 +57,7 @@ data:
                 "name": "prometheus",
                 "orgId": 1,
                 "type": "prometheus",
-                "url": "http://prometheus-service.cnf-performance.svc:8080",
+                "url": "http://prometheus-web.cnf-gateway.svc:8080",
                 "version": 1
             }
         ]
@@ -67,7 +67,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: grafana
-  namespace: cnf-performance
+  namespace: cnf-gateway
   annotations:
       prometheus.io/scrape: 'true'
       prometheus.io/port:   '3000'

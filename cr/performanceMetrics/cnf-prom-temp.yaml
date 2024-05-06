@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: prometheus
+  managedFields:
+  - apiVersion: apps/v1
+  name: prometheus
+  namespace: cnf-performance
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
+        prometheus.io/port: "9090"
+        prometheus.io/scrape: "true"
+      labels:
+        app: prometheus
+    spec:
+      containers:
+      - args:
+        - '--log.level=info'
+        - '--storage.tsdb.retention=6h'
+        - '--storage.tsdb.path=/prometheus'
+        - '--config.file=/etc/prometheus/prometheus.yaml'
+        image: artifactory.f5net.com/f5-toda-docker/sraja:v0.1.0-932c2dbe7d3e.debug
+        imagePullPolicy: Always
+        name: prometheus
+        ports:
+        - containerPort: 9090
+          name: web
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/prometheus
+          name: prometheus-config-volume
+        - mountPath: /prometheus
+          name: prometheus-storage-volume
+        - name: prometheus-volume
+          mountPath: /etc/ssl
+          readOnly: true
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: prometheus-config
+        name: prometheus-config-volume
+      - name: prometheus-volume
+        secret:
+          secretName: prometheus-secret
+      - emptyDir: {}
+        name: prometheus-storage-volume
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: prometheus-config
+  namespace: cnf-performance
+data:
+  prometheus.yaml: |
+    global:
+      scrape_interval: 15s
+      evaluation_interval: 15s
+    scrape_configs:
+ 
+      - job_name: 'k8s_pod'
+        kubernetes_sd_configs:
+        - role: pod
+          namespaces:
+            names:
+            - NAMESPACE
+        relabel_configs:
+          - source_labels: [__meta_kubernetes_pod_label_metrics_prometheus, __meta_kubernetes_pod_container_port_number]
+            regex: publish;9090
+            action: keep
+          - source_labels: [__meta_kubernetes_pod_name]
+            action: replace
+            target_label: pod_name
+          - source_labels: [__meta_kubernetes_namespace]
+            action: replace
+            target_label: namespace
+        scheme: https
+        tls_config:
+          ca_file: "/etc/ssl/ca.crt"
+          cert_file: "/etc/ssl/tls.crt"
+          key_file: "/etc/ssl/tls.key"
+          insecure_skip_verify: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: prometheus-web
+    namespace: cnf-performance
+spec:
+    selector:
+        app: prometheus
+    type: NodePort
+    ports:
+    - port: 8080
+      # targetPort: 9090
+      targetPort: 9090
+      nodePort: 30000
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: prometheus-cnf-performance
+rules:
+- apiGroups: [""]
+  resources:
+  - nodes
+  - nodes/metrics
+  - services
+  - endpoints
+  - pods
+  verbs: ["get", "list", "watch"]
+- apiGroups: [""]
+  resources:
+  - configmaps
+  verbs: ["get"]
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - ingresses
+  verbs: ["get", "list", "watch"]
+- nonResourceURLs: ["/metrics"]
+  verbs: ["get"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: prometheus-cnf-performance
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: prometheus-cnf-performance
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: cnf-performance
+---
+apiVersion: cm.f5co.k8s.f5net.com/v1
+kind: Certificate
+metadata:
+  name: prometheus
+  namespace: cnf-performance
+spec:
+  subject:
+    countries:
+      - US
+    provinces:
+      - Washington
+    localities:
+      - Seattle
+    organizations:
+      - F5 Networks
+    organizationalUnits:
+      - PD
+  emailAddresses:
+    - clientcert@f5net.com
+  commonName: f5net.com
+  dnsNames:
+    - prometheus
+  # SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource.
+  # It will be populated with a private key and certificate, signed by the denoted issuer.
+  secretName: prometheus-secret
+  # IssuerRef is a reference to the issuer for this certificate.
+  issuerRef:
+    name: default-cert-issuer
+    kind: ClusterIssuer
+  # Lifetime of the Certificate is 1 hour, not configurable
+  duration: 2160h
+  privateKey:
+    rotationPolicy: Always
+    encoding: PKCS1
+    algorithm: RSA
+    size: 4096

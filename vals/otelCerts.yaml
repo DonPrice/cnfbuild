@@ -1,0 +1,69 @@
+apiVersion: cm.f5co.k8s.f5net.com/v1
+kind: Certificate
+metadata:
+  name: external-otelsvr
+spec:
+  subject:
+    countries:
+      - US
+    provinces:
+      - Washington
+    localities:
+      - Seattle
+    organizations:
+      - F5 Networks
+    organizationalUnits:
+      - PD
+  emailAddresses:
+    - clientcert@f5net.com
+  commonName: f5net.com
+  # SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource.
+  # It will be populated with a private key and certificate, signed by the denoted issuer.
+  secretName: external-otelsvr-secret
+  # IssuerRef is a reference to the issuer for this certificate.
+  issuerRef:
+    name: default-cert-issuer
+    kind: ClusterIssuer
+  # Lifetime of the Certificate is 1 hour, not configurable
+  duration: 8640h
+  privateKey:
+    rotationPolicy: Always
+    encoding: PKCS1
+    algorithm: RSA
+    size: 4096
+  revisionHistoryLimit: 10
+---
+apiVersion: cm.f5co.k8s.f5net.com/v1
+kind: Certificate
+metadata:
+  name: external-f5ingotelsvr
+spec:
+  subject:
+    countries:
+      - US
+    provinces:
+      - Washington
+    localities:
+      - Seattle
+    organizations:
+      - F5 Networks
+    organizationalUnits:
+      - PD
+  emailAddresses:
+    - clientcert@f5net.com
+  commonName: f5net.com
+  # SecretName is the name of the secret resource that will be automatically created and managed by this Certificate resource.
+  # It will be populated with a private key and certificate, signed by the denoted issuer.
+  secretName: external-f5ingotelsvr-secret
+  # IssuerRef is a reference to the issuer for this certificate.
+  issuerRef:
+    name: default-cert-issuer
+    kind: ClusterIssuer
+  # Lifetime of the Certificate is 1 hour, not configurable
+  duration: 8640h
+  privateKey:
+    rotationPolicy: Always
+    encoding: PKCS1
+    algorithm: RSA
+    size: 4096
+  revisionHistoryLimit: 10

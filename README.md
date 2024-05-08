@@ -77,9 +77,10 @@ helm install cwc oci://repo.f5.com/charts/cwc --version 0.14.15-0.0.6 -f vals/va
 kubectl apply -f vals/networks.yaml -n cnf-gateway
 ```
 
-### 12. Apply OtelCerts
+### 12. Apply OtelCerts & OtelSecrets
 ```shell
-kubectl apply -f vals/otelsecrets.yaml
+kubectl apply -f vals/otelcerts.yaml
+# kubectl apply -f vals/otelsecrets.yaml
 ```
 
 ### 13. Apply Zebos ConfigMap
@@ -146,3 +147,28 @@ kubectl apply -f cr/cr-nat-pol.yaml -n cnf-gateway
 ``` shell
 kubectl apply -f cr/cr-vip-nat64.yaml -n cnf-gateway
 ```
+
+
+
+## Visual Performance
+
+### 1. Create Namespace
+```shell
+kubectl apply -f cnf-prom-mtls.yaml
+```
+### 2. Apply  Prometheus MTLS Certificate
+``` shell
+kubectl apply -f cr/performanceMetrics/cnf-prom-mtls.yaml
+```
+### 3. Apply Prometheus Template
+```shell
+kubectl apply -f cr/performanceMetrics/cnf-prom-temp.yaml
+```
+### 4. Apply Grafana Template
+```shell
+kubectl apply -f cr/performanceMetrics/cnf-graf-temp.yaml
+```
+### 5. Connect to Grafana
+
+Under the access methods on k3s-Worker-1 you should see a link for Grafana. This will for traffic to Node Address (10.1.1.7) on port 32000.
+

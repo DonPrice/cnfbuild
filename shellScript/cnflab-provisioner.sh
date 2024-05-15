@@ -17,7 +17,7 @@ sed -i 's/https:\/\/127.0.0.1:6443/https:\/\/10.1.1.6:6443/g' ~/.kube/config
 # Setup Kubectl AutoCompletion
 kubectl completion bash > ~/.bash_kube_completion
 
-# Adding Kubectl shortcuts
+# Kubectl shortcuts
 echo 'complete -o default -F __start_kubectl k' >> ~/.bashrc
 
 echo "alias k='kubectl'" >> ~/.bashrc
@@ -32,6 +32,9 @@ echo "alias kgettmm='kubectl get pods -owide  | grep tmm | sort -k8'" >> ~/.bash
 echo "alias kgrs='kubectl get rs '" >> ~/.bashrc
 echo "alias kdrs='kubectl describe rs '" >> ~/.bashrc
 echo "alias kgd='kubectl get deploy '" >> ~/.bashrc
+echo "alias tmm='kubectl exec -it deploy/f5-tmm -c debug -n cnf-gateway -- bash'" >> ~/.bashrc
+echo "alias zebos='kubectl exec -it deploy/f5-tmm -c f5-tmm-routing -n cnf-gateway -- bash'" >> ~/.bashrc
+echo "alias logs='kubectl exec -it deploy/f5-toda-fluentd -n cnf-gateway  -- bash'" >> ~/.bashrc
 
 echo 'source ~/.bash_kube_completion'  >> ~/.bashrc
 

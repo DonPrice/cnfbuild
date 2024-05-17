@@ -1,5 +1,12 @@
 #!/bin/sh
 # ensure we exit for any error To force push
+############################
+# Author: Bonny Rais
+#
+# Donovan Price: Added Reactivate Method, Added copy_api_keys (Lab Sepecific), Added Lab Paths
+# Version: stage-5_02
+#
+############################
 set -e
 #set -x
 

@@ -10,13 +10,16 @@
 set -e
 #set -x
 
-lbip=${lbip:="10.1.1.8:30881"}
 CERT_GEN_PATH="/home/ubuntu/cnfbuild/api-server-secrets/ssl"
 CWCPATH="/home/ubuntu/api-keys/"
 DIGITAL_ASSET_ID=""
 LICENSE_STATUS=""
 LICENSE_REPORT=""
 LICENSE_JWT=""
+
+#lbip=${lbip:="10.1.1.8:30881"}
+lbip="$(kubectl get nodes -o json `kubectl get pods -o json | jq -r '.items[] | select(.metadata.name | test("^f5-spk-cwc.*")) | .spec.nodeName'` | jq -r '.status.addresses[0].address'):30881"
+CURL_CWC="curl -gsk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem "
 
 JWT_FILE=${JWT_FILE:=~/cnfbuild/vals/jwt.txt}
 echo $JWT_FILE
@@ -39,12 +42,12 @@ get_license_status() {
     fi
 
     IFS=',' read -r DIGITAL_ASSET_ID LICENSE_STATUS <<EOF
-$(curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/status  | \
+$($CURL_CWC https://$lbip/status  | \
           jq -r '. | to_entries | .[] | select((.key == "Status") or (.key == "InitialRegistrationStatus")) | [.value.LicenseDetails.DigitalAssetID, .value.LicenseStatus.State] |join(",")' )
 EOF
     echo "DIGITAL_ASSET_ID: $DIGITAL_ASSET_ID"
     echo "LICENSE_STATUS: $LICENSE_STATUS"
-    curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/status  |  yq -P
+    $CURL_CWC https://$lbip/status  |  yq -P
 }
 
 
@@ -60,7 +63,7 @@ get_license_report() {
     #     exit -1
     # fi
 
-    LICENSE_REPORT=$(curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/report)
+    LICENSE_REPORT=$($CURL_CWC https://$lbip/report)
     echo "LICENSE_REPORT: $LICENSE_REPORT"
 }
 
@@ -103,7 +106,7 @@ get_entitlement_manifest() {
 send_receipt() {
   get_entitlement_manifest
 
-  curl -k  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/receipt -d  "$LICENSE_MANIFEST"
+  $CURL_CWC https://$lbip/receipt -d  "$LICENSE_MANIFEST"
 
 }
 
@@ -138,7 +141,7 @@ EOF
 
 reactive_license() {
   get_jwt
-  curl -k  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/reactivate -d  "$LICENSE_JWT"
+  $CURL_CWC https://$lbip/reactivate -d  "$LICENSE_JWT"
 }
 
 press_enter(  ) {

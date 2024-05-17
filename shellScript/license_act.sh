@@ -38,6 +38,8 @@ copy_api_keys
 
 get_license_status() {
     if ! [ -z ${DIGITAL_ASSET_ID} ]; then
+        echo "DIGITAL_ASSET_ID: $DIGITAL_ASSET_ID"
+        echo "LICENSE_STATUS: $LICENSE_STATUS"
         return
     fi
 

@@ -129,6 +129,10 @@ EOF
 
 }
 
+reactive_license() {
+  get_jwt
+  curl -k  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/reactivate -d  "$LICENSE_JWT"
+}
 
 press_enter(  ) {
 
@@ -151,6 +155,7 @@ until [ "$selection" = "0" ]; do
   echo "    	a.  disconnected mode activation AIO"
   echo "    	s.  get license status"
   echo "    	m.  get license manifest"
+  echo "      r.  reactivate license"
   echo "    	0.  Exit"
   echo ""
   echo -n "  Enter selection: "
@@ -160,6 +165,7 @@ until [ "$selection" = "0" ]; do
     a ) clear ; disconnected_activate_license ;; 
     m ) clear ; get_entitlement_manifest ;;
     s ) clear ; get_license_status ;;
+    r ) clear ; reactive_license ;;
     0 ) clear ; exit ;;
     * ) clear ; incorrect_selection ;;
   esac

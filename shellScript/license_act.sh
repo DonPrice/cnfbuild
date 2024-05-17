@@ -155,7 +155,7 @@ until [ "$selection" = "0" ]; do
   echo "    	a.  disconnected mode activation AIO"
   echo "    	s.  get license status"
   echo "    	m.  get license manifest"
-  echo "      r.  reactivate license"
+  echo "    	r.  reactivate license"
   echo "    	0.  Exit"
   echo ""
   echo -n "  Enter selection: "

@@ -37,7 +37,7 @@ $(curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pe
 EOF
     echo "DIGITAL_ASSET_ID: $DIGITAL_ASSET_ID"
     echo "LICENSE_STATUS: $LICENSE_STATUS"
-    curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/status  |  yq '.'
+    curl -sk  --cert  $CWCPATH/client_certificate.pem --key $CWCPATH/client_key.pem --cacert $CWCPATH/ca_certificate.pem https://$lbip/status  |  yq -P
 }
 
 

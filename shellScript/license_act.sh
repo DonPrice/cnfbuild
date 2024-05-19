@@ -27,6 +27,10 @@ echo $JWT_FILE
 copy_api_keys () {
     if [ ! -f $CWCPATH/client_certificate.pem ]; then
         echo "Retrieving Keys from $CERT_GEN_PATH"
+        echo "Storing them here $CWCPATH"
+        echo "=================================================================="
+        echo "== These Keys Need to be retained to allow interaction with CWC =="
+        echo "=================================================================="
         mkdir -p $CWCPATH
         cp $CERT_GEN_PATH/client/certs/client_certificate.pem $CWCPATH
         cp $CERT_GEN_PATH/client/secrets/client_key.pem $CWCPATH
